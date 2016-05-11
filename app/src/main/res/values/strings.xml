@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ScratchViewDemo</string>
+    <string name="price">\u20b9 1400</string>
+    <string name="price_strike"><strike>\u20b9 1400</strike> <font fgcolor="red"> \u20b9 1200 </font></string>
+    <string name="clothing_title">Basics Blue Casuals</string>
+    <string name="captcha_title">Captcha</string>
+    <string name="scratch_for_offer">Scratch to get offer :</string>
+    <string name="flat_200">FLAT200</string>
+    <string name="flat_200_offer">Get flat \u20b9 200 off with</string>
+    <string name="add_to_cart">ADD TO CART</string>
+    <string name="wish_list">WISHLIST IT!</string>
+    <string name="select_size">Select Size:</string>
+    <string name="scratch_to_find_image">Prove you are not a robot : Scratch and tell what was the image</string>
+    <string name="house">House</string>
+    <string name="train">Train</string>
+    <string name="park">Park</string>
+    <string name="tree">Tree</string>
+    <string name="verify">Verify</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="scratch_text_view_demo">Scratch Text View Demo</string>
+    <string name="scratch_image_view_demo">Scratch Image View Demo</string>
+</resources>
