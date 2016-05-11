@@ -19,7 +19,7 @@ Demo Screen
 | ----------------------------  | ----------------------------- | 
 | ![ScratchImageView][scratch_image] | ![ScratchTextView][scratch_text]   |
 
-# Useful Methods
+### Useful Methods
 
 Both the views have following three methods which are useful to reveal or determine whether revealed and listener during revealing the hidden text/image.
 
@@ -130,11 +130,6 @@ limitations under the License.
 
 [scratch_image]:https://raw.githubusercontent.com/cooltechworks/ScratchView/master/screenshots/scratch_image_view_demo.gif
 [scratch_text]:https://raw.githubusercontent.com/cooltechworks/ScratchView/master/screenshots/scratch_text_view_demo.gif
-[visa_front]:https://cloud.githubusercontent.com/assets/13122232/12871145/b57f92f2-cd90-11e5-8f36-086b227d06c3.png
-[amex_front]:https://cloud.githubusercontent.com/assets/13122232/12871146/c22cf74c-cd90-11e5-85e4-3ab45d50ba76.png
-[amex_back]:https://cloud.githubusercontent.com/assets/13122232/12871156/3124d570-cd91-11e5-8b71-f333e46192bb.png
-[visa_back]:https://cloud.githubusercontent.com/assets/13122232/12871157/31625b5c-cd91-11e5-87f7-f42a6404842b.png
-[1]: https://github.com/michelelacorte/SwipeableCard
 
 
 
