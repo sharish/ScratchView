@@ -77,12 +77,12 @@ scratchImageView.setRevealListener(new ScratchImageView.IRevealListener() {
 ##### JAVA
 
 ```java
-ScratchImageView scratchImageView = new ScratchImageView(this);
+ScratchTextView scratchTextView = new ScratchTextView(this);
 
-scratchImageView.setRevealListener(new ScratchImageView.IRevealListener() {
+scratchTextView.setRevealListener(new ScratchTextView.IRevealListener() {
     @Override
-    public void onRevealed(ScratchImageView tv) {
-        // on reveal
+    public void onRevealed(ScratchTextView tv) {
+        //on reveal
     }
 });
 ```
