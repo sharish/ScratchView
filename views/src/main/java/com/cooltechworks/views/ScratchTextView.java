@@ -104,14 +104,6 @@ public class ScratchTextView extends TextView {
 
     }
 
-    /**
-     * Set the strokes width based on the parameter multiplier.
-     * @param multiplier can be 1,2,3 and so on to set the stroke width of the paint.
-     */
-    public void setStrokeWidth(int multiplier) {
-        mErasePaint.setStrokeWidth(multiplier * STROKE_WIDTH);
-    }
-
     public ScratchTextView(Context context, AttributeSet set) {
         super(context, set);
         init();
@@ -120,6 +112,14 @@ public class ScratchTextView extends TextView {
     public ScratchTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
+    }
+
+    /**
+     * Set the strokes width based on the parameter multiplier.
+     * @param multiplier can be 1,2,3 and so on to set the stroke width of the paint.
+     */
+    public void setStrokeWidth(int multiplier) {
+        mErasePaint.setStrokeWidth(multiplier * STROKE_WIDTH);
     }
 
     /**
@@ -224,7 +224,7 @@ public class ScratchTextView extends TextView {
      */
     public void reveal() {
 
-        int bounds[] = getTextBounds(1.5f);
+        int[] bounds = getTextBounds(1.5f);
         int left = bounds[0];
         int top = bounds[1];
         int right = bounds[2];
@@ -273,6 +273,8 @@ public class ScratchTextView extends TextView {
             case MotionEvent.ACTION_UP:
                 drawPath();
                 invalidate();
+                break;
+            default:
                 break;
         }
         return true;
@@ -369,7 +371,7 @@ public class ScratchTextView extends TextView {
 
         String text = getText().toString();
 
-        int dimens[] = getTextDimens(text, paint);
+        int[] dimens = getTextDimens(text, paint);
         int width = dimens[0];
         int height = dimens[1];
 

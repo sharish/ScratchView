@@ -47,12 +47,12 @@ public class FlipAnimator extends Animation {
     /**
      * Center X - holds the center X point of the parent view where the animation should take place.
      */
-    private float centerX;
+    private final float centerX;
 
     /**
      * Center Y - holds the center Y point of the parent view where the animation should take place.
      */
-    private float centerY;
+    private final float centerY;
 
     /**
      * Flag to represent whether to flip originate from fromView to toView or vice versa
@@ -63,22 +63,6 @@ public class FlipAnimator extends Animation {
     private boolean visibilitySwapped;
 
     private int rotationDirection = DIRECTION_X;
-
-    public int getRotationDirection() {
-        return rotationDirection;
-    }
-
-    public void setRotationDirection(int rotationDirection) {
-        this.rotationDirection = rotationDirection;
-    }
-
-    public int getTranslateDirection() {
-        return translateDirection;
-    }
-
-    public void setTranslateDirection(int translateDirection) {
-        this.translateDirection = translateDirection;
-    }
 
     private int translateDirection = DIRECTION_Z;
 
@@ -102,6 +86,22 @@ public class FlipAnimator extends Animation {
         setDuration(500);
         setFillAfter(true);
         setInterpolator(new AccelerateDecelerateInterpolator());
+    }
+
+    public int getRotationDirection() {
+        return rotationDirection;
+    }
+
+    public void setRotationDirection(int rotationDirection) {
+        this.rotationDirection = rotationDirection;
+    }
+
+    public int getTranslateDirection() {
+        return translateDirection;
+    }
+
+    public void setTranslateDirection(int translateDirection) {
+        this.translateDirection = translateDirection;
     }
 
     public void reverse() {
