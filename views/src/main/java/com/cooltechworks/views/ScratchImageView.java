@@ -112,14 +112,6 @@ public class ScratchImageView extends ImageView {
 
     }
 
-    /**
-     * Set the strokes width based on the parameter multiplier.
-     * @param multiplier can be 1,2,3 and so on to set the stroke width of the paint.
-     */
-    public void setStrokeWidth(int multiplier) {
-        mErasePaint.setStrokeWidth(multiplier * STROKE_WIDTH);
-    }
-
     public ScratchImageView(Context context, AttributeSet set) {
         super(context, set);
         init();
@@ -128,6 +120,14 @@ public class ScratchImageView extends ImageView {
     public ScratchImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
+    }
+
+    /**
+     * Set the strokes width based on the parameter multiplier.
+     * @param multiplier can be 1,2,3 and so on to set the stroke width of the paint.
+     */
+    public void setStrokeWidth(int multiplier) {
+        mErasePaint.setStrokeWidth(multiplier * STROKE_WIDTH);
     }
 
     /**
@@ -200,7 +200,7 @@ public class ScratchImageView extends ImageView {
      */
     public void clear() {
 
-        int bounds[] = getImageBounds();
+        int[] bounds = getImageBounds();
         int left = bounds[0];
         int top = bounds[1];
         int right = bounds[2];
@@ -282,6 +282,8 @@ public class ScratchImageView extends ImageView {
             case MotionEvent.ACTION_UP:
                 touch_up();
                 invalidate();
+                break;
+            default:
                 break;
         }
         return true;
