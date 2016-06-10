@@ -1,13 +1,12 @@
 /**
- *
  * Copyright 2016 Harish Sridharan
-
+ * <p/>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * <p/>
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p/>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -18,6 +17,7 @@
 package com.cooltechworks.views;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -31,14 +31,10 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.MotionEvent;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 /**
  * Created by Harish on 25/03/16.
@@ -104,7 +100,7 @@ public class ScratchImageView extends ImageView {
      * Flag that tells Image has been revealed or not.
      */
     private boolean mIsRevealed = false;
-
+    private Drawable mCustomScrachView;
 
     public ScratchImageView(Context context) {
         super(context);
@@ -114,11 +110,15 @@ public class ScratchImageView extends ImageView {
 
     public ScratchImageView(Context context, AttributeSet set) {
         super(context, set);
+        TypedArray array = context.obtainStyledAttributes(set,R.styleable.ScratchImageView);
+        mCustomScrachView = array.getDrawable(R.styleable.ScratchImageView_customScrach);
         init();
     }
 
     public ScratchImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        TypedArray array = context.obtainStyledAttributes(attrs,R.styleable.ScratchImageView);
+        mCustomScrachView = array.getDrawable(R.styleable.ScratchImageView_customScrach);
         init();
     }
 
@@ -134,7 +134,6 @@ public class ScratchImageView extends ImageView {
      * Initialises the paint drawing elements.
      */
     private void init() {
-
 
         mTouchPath = new Path();
 
@@ -152,7 +151,13 @@ public class ScratchImageView extends ImageView {
         mErasePath = new Path();
         mBitmapPaint = new Paint(Paint.DITHER_FLAG);
 
-        Bitmap scratchBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_scratch_pattern);
+        Bitmap scratchBitmap;
+        if(mCustomScrachView!=null){
+            scratchBitmap = ((BitmapDrawable) mCustomScrachView).getBitmap();
+        }else {
+            scratchBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_scratch_pattern);
+        }
+
         mDrawable = new BitmapDrawable(getResources(), scratchBitmap);
         mDrawable.setTileModeXY(Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
 
@@ -315,7 +320,7 @@ public class ScratchImageView extends ImageView {
 
     private void checkRevealed() {
 
-        if(! isRevealed() && mRevealListener != null) {
+        if (!isRevealed() && mRevealListener != null) {
 
             int[] bounds = getImageBounds();
             int left = bounds[0];
@@ -324,7 +329,7 @@ public class ScratchImageView extends ImageView {
             int height = bounds[3] - top;
 
 
-            new AsyncTask<Integer,Void,Boolean>() {
+            new AsyncTask<Integer, Void, Boolean>() {
 
                 @Override
                 protected Boolean doInBackground(Integer... params) {
@@ -334,20 +339,20 @@ public class ScratchImageView extends ImageView {
                     int width = params[2];
                     int height = params[3];
 
-                    Bitmap croppedBitmap = Bitmap.createBitmap(mScratchBitmap, left, top, width, height );
+                    Bitmap croppedBitmap = Bitmap.createBitmap(mScratchBitmap, left, top, width, height);
                     Bitmap emptyBitmap = Bitmap.createBitmap(croppedBitmap.getWidth(), croppedBitmap.getHeight(), croppedBitmap.getConfig());
 
-                    return(emptyBitmap.sameAs(croppedBitmap));
+                    return (emptyBitmap.sameAs(croppedBitmap));
                 }
 
                 public void onPostExecute(Boolean hasRevealed) {
 
-                    if( ! mIsRevealed) {
+                    if (!mIsRevealed) {
                         // still not revealed.
 
                         mIsRevealed = hasRevealed;
 
-                        if( mIsRevealed) {
+                        if (mIsRevealed) {
                             mRevealListener.onRevealed(ScratchImageView.this);
                         }
                     }
@@ -367,8 +372,8 @@ public class ScratchImageView extends ImageView {
         int vwidth = getWidth() - paddingLeft - paddingRight;
         int vheight = getHeight() - paddingBottom - paddingTop;
 
-        int centerX = vwidth/2;
-        int centerY = vheight/2;
+        int centerX = vwidth / 2;
+        int centerY = vheight / 2;
 
 
         Drawable drawable = getDrawable();
@@ -377,22 +382,22 @@ public class ScratchImageView extends ImageView {
         int width = drawable.getIntrinsicWidth();
         int height = drawable.getIntrinsicHeight();
 
-        if(width <= 0) {
+        if (width <= 0) {
             width = bounds.right - bounds.left;
         }
 
-        if(height <= 0) {
+        if (height <= 0) {
             height = bounds.bottom - bounds.top;
         }
 
         int left;
         int top;
 
-        if(height > vheight) {
+        if (height > vheight) {
             height = vheight;
         }
 
-        if(width > vwidth) {
+        if (width > vwidth) {
             width = vwidth;
         }
 
@@ -421,9 +426,8 @@ public class ScratchImageView extends ImageView {
 
         }
 
-        return new int[] {left, top, left + width, top + height};
+        return new int[]{left, top, left + width, top + height};
     }
-
 
 
 }
