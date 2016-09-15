@@ -45,6 +45,11 @@ public class DemoClothingActivity extends AppCompatActivity {
                     showPrice();
                     mScratchTitleView.setText(R.string.flat_200_offer);
                 }
+
+                @Override
+                public void onRevealPercentChangedListener(ScratchTextView stv, float percent) {
+                    // on percent reveal.
+                }
             });
         }
 

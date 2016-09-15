@@ -31,14 +31,14 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.text.TextPaint;
 import android.util.AttributeSet;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.ImageView;
-import android.widget.TextView;
+
+import com.cooltechworks.utils.BitmapUtils;
+
 
 /**
  * Created by Harish on 25/03/16.
@@ -47,7 +47,8 @@ public class ScratchImageView extends ImageView {
 
 
     public interface IRevealListener {
-        public void onRevealed(ScratchImageView tv);
+        public void onRevealed(ScratchImageView iv);
+        public void onRevealPercentChangedListener(ScratchImageView siv, float percent);
     }
 
     public static final float STROKE_WIDTH = 12f;
@@ -101,9 +102,14 @@ public class ScratchImageView extends ImageView {
     private IRevealListener mRevealListener;
 
     /**
-     * Flag that tells Image has been revealed or not.
+     * Reveal percent value.
      */
-    private boolean mIsRevealed = false;
+    private float mRevealPercent;
+
+    /**
+     * Thread Count
+     */
+    private int mThreadCount = 0;
 
 
     public ScratchImageView(Context context) {
@@ -257,7 +263,7 @@ public class ScratchImageView extends ImageView {
     }
 
     public void reveal() {
-
+        clear();
     }
 
     private void touch_up() {
@@ -310,7 +316,7 @@ public class ScratchImageView extends ImageView {
     }
 
     public boolean isRevealed() {
-        return mIsRevealed;
+        return mRevealPercent == 1;
     }
 
     private void checkRevealed() {
@@ -323,31 +329,48 @@ public class ScratchImageView extends ImageView {
             int width = bounds[2] - left;
             int height = bounds[3] - top;
 
+            // Do not create multiple calls to compare.
+            if(mThreadCount > 1) {
+                Log.d("Captcha", "Count greater than 1");
+                return;
+            }
 
-            new AsyncTask<Integer,Void,Boolean>() {
+            mThreadCount++;
+
+            new AsyncTask<Integer, Void, Float>() {
 
                 @Override
-                protected Boolean doInBackground(Integer... params) {
+                protected Float doInBackground(Integer... params) {
 
-                    int left = params[0];
-                    int top = params[1];
-                    int width = params[2];
-                    int height = params[3];
+                    try {
+                        int left = params[0];
+                        int top = params[1];
+                        int width = params[2];
+                        int height = params[3];
 
-                    Bitmap croppedBitmap = Bitmap.createBitmap(mScratchBitmap, left, top, width, height );
-                    Bitmap emptyBitmap = Bitmap.createBitmap(croppedBitmap.getWidth(), croppedBitmap.getHeight(), croppedBitmap.getConfig());
+                        Bitmap croppedBitmap = Bitmap.createBitmap(mScratchBitmap, left, top, width, height);
+                        Bitmap emptyBitmap = Bitmap.createBitmap(croppedBitmap.getWidth(), croppedBitmap.getHeight(), croppedBitmap.getConfig());
 
-                    return(emptyBitmap.sameAs(croppedBitmap));
+                        return BitmapUtils.compareEquivalance(croppedBitmap, emptyBitmap);
+                    } finally {
+                        mThreadCount--;
+                    }
                 }
 
-                public void onPostExecute(Boolean hasRevealed) {
+                public void onPostExecute(Float percentRevealed) {
 
-                    if( ! mIsRevealed) {
-                        // still not revealed.
+                    // check if not revealed before.
+                    if( ! isRevealed()) {
 
-                        mIsRevealed = hasRevealed;
+                        float oldValue = mRevealPercent;
+                        mRevealPercent = percentRevealed;
 
-                        if( mIsRevealed) {
+                        if(oldValue != percentRevealed) {
+                            mRevealListener.onRevealPercentChangedListener(ScratchImageView.this, percentRevealed);
+                        }
+
+                        // if now revealed.
+                        if( isRevealed()) {
                             mRevealListener.onRevealed(ScratchImageView.this);
                         }
                     }
