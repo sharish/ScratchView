@@ -349,9 +349,8 @@ public class ScratchImageView extends ImageView {
                         int height = params[3];
 
                         Bitmap croppedBitmap = Bitmap.createBitmap(mScratchBitmap, left, top, width, height);
-                        Bitmap emptyBitmap = Bitmap.createBitmap(croppedBitmap.getWidth(), croppedBitmap.getHeight(), croppedBitmap.getConfig());
 
-                        return BitmapUtils.compareEquivalance(croppedBitmap, emptyBitmap);
+                        return BitmapUtils.getTransparentPixelPercent(croppedBitmap);
                     } finally {
                         mThreadCount--;
                     }
