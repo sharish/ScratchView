@@ -56,6 +56,11 @@ scratchImageView.setRevealListener(new ScratchImageView.IRevealListener() {
     public void onRevealed(ScratchImageView tv) {
         // on reveal
     }
+
+    @Override
+    public void onRevealPercentChangedListener(ScratchImageView siv, float percent) {
+        // on image percent reveal
+    }
 });
 ```
 
@@ -84,6 +89,12 @@ scratchTextView.setRevealListener(new ScratchTextView.IRevealListener() {
     public void onRevealed(ScratchTextView tv) {
         //on reveal
     }
+
+
+    @Override
+    public void onRevealPercentChangedListener(ScratchTextView stv, float percent) {
+        // on text percent reveal
+    }
 });
 ```
 
@@ -99,7 +110,7 @@ repositories {
 }
 
 dependencies {
-    compile 'com.github.cooltechworks:ScratchView:v1.0'
+    compile 'com.github.cooltechworks:ScratchView:v1.1'
 }
 ```
 
