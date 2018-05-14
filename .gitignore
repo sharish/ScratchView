@@ -10,3 +10,12 @@
 .externalNativeBuild
 .adea/*
 app/build/*
+.idea/*
+*.iml
+
+views/.idea/*
+views/gradle/*
+views/build/*
+views/gradlew
+views/gradlew.bat
+views/local.properties
