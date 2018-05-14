@@ -31,23 +31,23 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
-import android.widget.TextView;
 
 import com.cooltechworks.utils.BitmapUtils;
 
 /**
  * Created by Harish on 25/03/16.
  */
-public class ScratchTextView extends TextView {
+public class ScratchTextView extends AppCompatTextView {
 
 
     public interface IRevealListener {
-        public void onRevealed(ScratchTextView tv);
-        public void onRevealPercentChangedListener(ScratchTextView stv, float percent);
+        void onRevealed(ScratchTextView tv);
+        void onRevealPercentChangedListener(ScratchTextView stv, float percent);
     }
 
     public static final float STROKE_WIDTH = 12f;
@@ -415,13 +415,11 @@ public class ScratchTextView extends TextView {
 
         int gravity = getGravity();
 
-
-        //todo Gravity.START
-        if((gravity & Gravity.LEFT) == Gravity.LEFT) {
+        if((gravity & Gravity.START) == Gravity.START) {
             left = paddingLeft;
         }
-        //todo Gravity.END
-        else if((gravity & Gravity.RIGHT) == Gravity.RIGHT) {
+
+        else if((gravity & Gravity.END) == Gravity.END) {
             left = (vwidth - paddingRight) - width;
         }
         else if((gravity & Gravity.CENTER_HORIZONTAL) == Gravity.CENTER_HORIZONTAL) {
