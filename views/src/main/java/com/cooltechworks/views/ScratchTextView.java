@@ -162,7 +162,7 @@ public class ScratchTextView extends AppCompatTextView {
         mBitmapPaint = new Paint(Paint.DITHER_FLAG);
 
 
-        Bitmap scratchBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_scratch_pattern);
+        Bitmap scratchBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.gold);
         mDrawable = new BitmapDrawable(getResources(), scratchBitmap);
         mDrawable.setTileModeXY(Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
 
@@ -198,6 +198,9 @@ public class ScratchTextView extends AppCompatTextView {
     }
 
     private void touch_start(float x, float y) {
+
+        checkRevealed();
+
         mErasePath.reset();
         mErasePath.moveTo(x, y);
         mX = x;
@@ -206,6 +209,8 @@ public class ScratchTextView extends AppCompatTextView {
 
 
     private void touch_move(float x, float y) {
+
+        checkRevealed();
 
         float dx = Math.abs(x - mX);
         float dy = Math.abs(y - mY);
@@ -371,10 +376,10 @@ public class ScratchTextView extends AppCompatTextView {
 
     private int[] getTextBounds(float scale) {
 
-        int paddingLeft = getPaddingLeft();
-        int paddingTop = getPaddingTop();
-        int paddingRight = getPaddingRight();
-        int paddingBottom = getPaddingBottom();
+        int paddingLeft = 0; //getPaddingLeft();
+        int paddingTop =  0; //getPaddingTop();
+        int paddingRight =  0; //getPaddingRight();
+        int paddingBottom =  0; //getPaddingBottom();
 
         int vwidth = getWidth();
         int vheight = getHeight();
