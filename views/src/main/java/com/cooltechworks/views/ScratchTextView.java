@@ -376,10 +376,10 @@ public class ScratchTextView extends AppCompatTextView {
 
     private int[] getTextBounds(float scale) {
 
-        int paddingLeft = 0; //getPaddingLeft();
-        int paddingTop =  0; //getPaddingTop();
-        int paddingRight =  0; //getPaddingRight();
-        int paddingBottom =  0; //getPaddingBottom();
+        int paddingLeft = getPaddingLeft();
+        int paddingTop = getPaddingTop();
+        int paddingRight = getPaddingRight();
+        int paddingBottom = getPaddingBottom();
 
         int vwidth = getWidth();
         int vheight = getHeight();
