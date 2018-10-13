@@ -18,6 +18,7 @@ package com.cooltechworks.scratchview.demo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -49,6 +50,7 @@ public class DemoClothingActivity extends AppCompatActivity {
                 @Override
                 public void onRevealPercentChangedListener(ScratchTextView stv, float percent) {
                     // on percent reveal.
+                    Log.i("Percentage", String.valueOf(percent));
                 }
             });
         }

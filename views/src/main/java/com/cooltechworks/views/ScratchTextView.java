@@ -31,23 +31,23 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
-import android.widget.TextView;
 
 import com.cooltechworks.utils.BitmapUtils;
 
 /**
  * Created by Harish on 25/03/16.
  */
-public class ScratchTextView extends TextView {
+public class ScratchTextView extends AppCompatTextView {
 
 
     public interface IRevealListener {
-        public void onRevealed(ScratchTextView tv);
-        public void onRevealPercentChangedListener(ScratchTextView stv, float percent);
+        void onRevealed(ScratchTextView tv);
+        void onRevealPercentChangedListener(ScratchTextView stv, float percent);
     }
 
     public static final float STROKE_WIDTH = 12f;
@@ -162,7 +162,7 @@ public class ScratchTextView extends TextView {
         mBitmapPaint = new Paint(Paint.DITHER_FLAG);
 
 
-        Bitmap scratchBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_scratch_pattern);
+        Bitmap scratchBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.gold);
         mDrawable = new BitmapDrawable(getResources(), scratchBitmap);
         mDrawable.setTileModeXY(Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
 
@@ -198,6 +198,9 @@ public class ScratchTextView extends TextView {
     }
 
     private void touch_start(float x, float y) {
+
+        checkRevealed();
+
         mErasePath.reset();
         mErasePath.moveTo(x, y);
         mX = x;
@@ -206,6 +209,8 @@ public class ScratchTextView extends TextView {
 
 
     private void touch_move(float x, float y) {
+
+        checkRevealed();
 
         float dx = Math.abs(x - mX);
         float dy = Math.abs(y - mY);
@@ -415,13 +420,11 @@ public class ScratchTextView extends TextView {
 
         int gravity = getGravity();
 
-
-        //todo Gravity.START
-        if((gravity & Gravity.LEFT) == Gravity.LEFT) {
+        if((gravity & Gravity.START) == Gravity.START) {
             left = paddingLeft;
         }
-        //todo Gravity.END
-        else if((gravity & Gravity.RIGHT) == Gravity.RIGHT) {
+
+        else if((gravity & Gravity.END) == Gravity.END) {
             left = (vwidth - paddingRight) - width;
         }
         else if((gravity & Gravity.CENTER_HORIZONTAL) == Gravity.CENTER_HORIZONTAL) {

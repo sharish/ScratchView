@@ -32,10 +32,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.widget.ImageView;
 
 import com.cooltechworks.utils.BitmapUtils;
 
@@ -43,12 +43,12 @@ import com.cooltechworks.utils.BitmapUtils;
 /**
  * Created by Harish on 25/03/16.
  */
-public class ScratchImageView extends ImageView {
+public class ScratchImageView extends AppCompatImageView {
 
 
     public interface IRevealListener {
-        public void onRevealed(ScratchImageView iv);
-        public void onRevealPercentChangedListener(ScratchImageView siv, float percent);
+        void onRevealed(ScratchImageView iv);
+        void onRevealPercentChangedListener(ScratchImageView siv, float percent);
     }
 
     public static final float STROKE_WIDTH = 12f;
@@ -158,7 +158,7 @@ public class ScratchImageView extends ImageView {
         mErasePath = new Path();
         mBitmapPaint = new Paint(Paint.DITHER_FLAG);
 
-        Bitmap scratchBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ic_scratch_pattern);
+        Bitmap scratchBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.gold);
         mDrawable = new BitmapDrawable(getResources(), scratchBitmap);
         mDrawable.setTileModeXY(Shader.TileMode.REPEAT, Shader.TileMode.REPEAT);
 
@@ -378,6 +378,8 @@ public class ScratchImageView extends ImageView {
 
         }
     }
+
+
 
     public int[] getImageBounds() {
 
