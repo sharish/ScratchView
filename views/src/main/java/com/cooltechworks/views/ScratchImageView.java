@@ -1,4 +1,4 @@
-/**
+/*
  *
  * Copyright 2016 Harish Sridharan
 
@@ -31,19 +31,20 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.widget.ImageView;
+import androidx.appcompat.widget.AppCompatImageView;
 
 import com.cooltechworks.utils.BitmapUtils;
+
+import androidx.core.content.ContextCompat;
 
 
 /**
  * Created by Harish on 25/03/16.
  */
-public class ScratchImageView extends ImageView {
+public class ScratchImageView extends AppCompatImageView {
 
 
     public interface IRevealListener {

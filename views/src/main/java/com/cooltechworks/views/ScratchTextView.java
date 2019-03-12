@@ -1,4 +1,4 @@
-/**
+/*
  *
  * Copyright 2016 Harish Sridharan
 
@@ -30,19 +30,20 @@ import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
-import android.support.v4.content.ContextCompat;
 import android.text.TextPaint;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
-import android.widget.TextView;
+import androidx.appcompat.widget.AppCompatTextView;
 
 import com.cooltechworks.utils.BitmapUtils;
+
+import androidx.core.content.ContextCompat;
 
 /**
  * Created by Harish on 25/03/16.
  */
-public class ScratchTextView extends TextView {
+public class ScratchTextView extends AppCompatTextView {
 
 
     public interface IRevealListener {

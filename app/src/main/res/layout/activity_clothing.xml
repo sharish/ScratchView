@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/paint_background"
@@ -11,7 +12,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_margin="10dp">
@@ -27,7 +28,7 @@
                     android:layout_height="0dp"
                     android:layout_weight="1"
                     android:background="@android:color/white"
-                    android:src="@drawable/img_sample1">
+                    app:srcCompat="@drawable/img_sample1">
 
                 </ImageView>
 
@@ -51,7 +52,7 @@
                         android:layout_width="200dp"
                         android:layout_height="match_parent">
 
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/price_before_text"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -61,7 +62,7 @@
                             android:textSize="15sp"
                             android:textStyle="bold" />
 
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:id="@+id/price_after_text"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -79,10 +80,10 @@
                 </LinearLayout>
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp">
@@ -92,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/scratch_title_text"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -117,9 +118,9 @@
             </LinearLayout>
 
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp">
@@ -129,7 +130,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/select_size_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -139,7 +140,7 @@
                     android:textColor="@android:color/black"
                     android:textSize="15sp" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/size_view"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
@@ -153,11 +154,12 @@
                     android:text="S"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:drawableEnd="@drawable/ic_chevron_down" />
             </LinearLayout>
 
 
-        </android.support.v7.widget.CardView>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
@@ -168,7 +170,7 @@
         android:background="@android:color/white"
         android:orientation="horizontal">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/wish_list"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -178,9 +180,10 @@
             android:text="@string/wish_list"
             android:drawableLeft="@drawable/ic_wishlist"
             android:textColor="@android:color/black"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:drawableStart="@drawable/ic_wishlist" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/add_to_cart"
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -195,7 +198,8 @@
             android:text="@string/add_to_cart"
             android:textColor="@android:color/white"
             android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:drawableStart="@drawable/ic_cart" />
     </LinearLayout>
 
 </FrameLayout>

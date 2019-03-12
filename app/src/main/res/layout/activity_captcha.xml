@@ -11,23 +11,21 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-
             android:text="@string/scratch_to_find_image"
             android:textColor="@android:color/black"
             android:textSize="16sp"
             android:textStyle="bold"
 
-
             />
 
-        <android.support.v7.widget.CardView
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp">
@@ -100,12 +98,11 @@
 
             </LinearLayout>
 
-        </android.support.v7.widget.CardView>
-
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/add_to_cart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

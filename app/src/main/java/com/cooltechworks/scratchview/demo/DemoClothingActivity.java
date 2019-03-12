@@ -17,11 +17,12 @@
 package com.cooltechworks.scratchview.demo;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
 import com.cooltechworks.views.ScratchTextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by Harish on 10/03/16.
