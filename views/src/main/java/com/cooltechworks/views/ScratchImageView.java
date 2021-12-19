@@ -395,6 +395,13 @@ public class ScratchImageView extends AppCompatImageView {
 
 
         Drawable drawable = getDrawable();
+
+        // if user has not provided the src or image resource
+        // we will use the frame drawable to get the height and width.
+        if (drawable == null) {
+            drawable = mDrawable;
+        }
+
         Rect bounds = drawable.getBounds();
 
         int width = drawable.getIntrinsicWidth();
