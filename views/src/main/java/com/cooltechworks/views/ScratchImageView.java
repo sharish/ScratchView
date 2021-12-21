@@ -375,7 +375,7 @@ public class ScratchImageView extends AppCompatImageView {
                         }
                     }
                 }
-            }.execute(left, top, width, height);
+            }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, left, top, width, height);
 
         }
     }
